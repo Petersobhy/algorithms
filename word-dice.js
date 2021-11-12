@@ -16,6 +16,8 @@ function constructWordUsingDice(word, dices) {
         map[c + "-" + w].push(d);
       }
     }
+
+    if (map[c + "-" + w].length == 0) return false;
   }
 
   // sort
@@ -28,14 +30,17 @@ function constructWordUsingDice(word, dices) {
   });
 
   var taken = []; // dices
-  for (var c = 0; c < arr.length; c++) {
-    if (arr[c][1].length == 0) return false;
+  for (var charIndex = 0; charIndex < arr.length; charIndex++) {
+    for (
+      var chardiceIndex = 0;
+      chardiceIndex < arr[charIndex][1].length;
+      chardiceIndex++
+    ) {
+      var diceIndex = arr[charIndex][1][chardiceIndex];
 
-    for (var ci = 0; ci < arr[c][1].length; ci++) {
-      var d = arr[c][1][ci];
-
-      if (taken.indexOf(d) == -1) {
-        taken.push(d);
+      if (taken.indexOf(diceIndex) == -1) {
+        taken.push(diceIndex);
+        break;
       }
     }
   }
@@ -47,19 +52,29 @@ function constructWordUsingDice(word, dices) {
   return taken.length === word.length;
 }
 
-console.log(
-  constructWordUsingDice("aone", [
-    ["a", "b", "c", "d", "e", "f"],
-    ["a", "e", "i", "o", "u", "y"],
-    ["a", "b", "c", "d", "x", "y"],
-    ["n", "o", "p", "q", "r", "s"],
-  ])
-);
+// console.log(
+//   constructWordUsingDice("aone", [
+//     ["a", "b", "c", "d", "e", "f"],
+//     ["a", "e", "i", "o", "u", "y"],
+//     ["a", "b", "c", "d", "x", "y"],
+//     ["n", "o", "p", "q", "r", "s"],
+//   ])
+// );
+
+// console.log(
+//   constructWordUsingDice("see", [
+//     ["e", "e", "e", "e", "e", "e"],
+//     ["a", "b", "c", "d", "x", "y"],
+//     ["n", "o", "p", "q", "r", "s"],
+//   ])
+// );
 
 console.log(
-  constructWordUsingDice("see", [
-    ["e", "e", "e", "e", "e", "e"],
-    ["a", "b", "c", "d", "x", "y"],
-    ["n", "o", "p", "q", "r", "s"],
+  constructWordUsingDice("xxyyy", [
+    ["x", "x", "x", "x", "x", "x"],
+    ["x", "x", "x", "x", "x", "x"],
+    ["x", "x", "x", "x", "x", "x"],
+    ["y", "y", "y", "y", "y", "y"],
+    ["y", "y", "y", "y", "y", "y"],
   ])
 );
