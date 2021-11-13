@@ -18,7 +18,7 @@ function recursiveIslandsAndLakes(matrix) {
 function markIsland(matrix, x, y, rows, cols) {
   if (x < 0 || x >= rows || y < 0 || y >= cols || matrix[x][y] != 1) return 0; // water or part of island
 
-  matrix[x][y] = 2; // or 0 to exclude it on future calls
+  matrix[x][y] = 0; // or 0 to exclude it on future calls
 
   var count = 1;
 
@@ -30,11 +30,20 @@ function markIsland(matrix, x, y, rows, cols) {
   return count;
 }
 
+// console.log(
+//   recursiveIslandsAndLakes([
+//     [1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1],
+//     [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0],
+//     [1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0],
+//     [1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1],
+//   ])
+// );
+
 console.log(
   recursiveIslandsAndLakes([
-    [1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1],
-    [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0],
-    [1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0],
-    [1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1],
+    [1, 1, 1, 1],
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
+    [1, 1, 1, 1],
   ])
 );
